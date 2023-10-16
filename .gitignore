@@ -46,7 +46,7 @@ SourceArt/**/*.png
 SourceArt/**/*.tga
 
 # Binary Files
-Binaries/*
+Binaries/
 Plugins/*/Binaries/*
 
 # Builds
@@ -72,3 +72,9 @@ Plugins/*/Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
+
+AITheatre_Proto/Saved/
+
+AITheatre_Proto/Intermediate/
+
+
