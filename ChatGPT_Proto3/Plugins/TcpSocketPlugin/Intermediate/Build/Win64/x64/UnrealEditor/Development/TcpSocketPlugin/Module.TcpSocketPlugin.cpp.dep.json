@@ -1,0 +1,30 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\studentsaxion\\documents\\unreal projects\\chatgpt_proto3\\plugins\\tcpsocketplugin\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\tcpsocketplugin\\module.tcpsocketplugin.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\studentsaxion\\documents\\unreal projects\\chatgpt_proto3\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\engine\\sharedpch.engine.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\studentsaxion\\documents\\unreal projects\\chatgpt_proto3\\plugins\\tcpsocketplugin\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\tcpsocketplugin\\definitions.tcpsocketplugin.h",
+            "c:\\users\\studentsaxion\\documents\\unreal projects\\chatgpt_proto3\\plugins\\tcpsocketplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\tcpsocketplugin\\uht\\tcpsocketconnection.gen.cpp",
+            "c:\\users\\studentsaxion\\documents\\unreal projects\\chatgpt_proto3\\plugins\\tcpsocketplugin\\source\\tcpsocketplugin\\public\\tcpsocketconnection.h",
+            "c:\\users\\studentsaxion\\documents\\unreal projects\\chatgpt_proto3\\plugins\\tcpsocketplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\tcpsocketplugin\\uht\\tcpsocketconnection.generated.h",
+            "c:\\users\\studentsaxion\\documents\\unreal projects\\chatgpt_proto3\\plugins\\tcpsocketplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\tcpsocketplugin\\uht\\tcpsocketplugin.init.gen.cpp",
+            "c:\\users\\studentsaxion\\documents\\unreal projects\\chatgpt_proto3\\plugins\\tcpsocketplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\tcpsocketplugin\\uht\\tcpsocketsettings.gen.cpp",
+            "c:\\users\\studentsaxion\\documents\\unreal projects\\chatgpt_proto3\\plugins\\tcpsocketplugin\\source\\tcpsocketplugin\\public\\tcpsocketsettings.h",
+            "c:\\users\\studentsaxion\\documents\\unreal projects\\chatgpt_proto3\\plugins\\tcpsocketplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\tcpsocketplugin\\uht\\tcpsocketsettings.generated.h",
+            "c:\\users\\studentsaxion\\documents\\unreal projects\\chatgpt_proto3\\plugins\\tcpsocketplugin\\source\\tcpsocketplugin\\private\\tcpsocketconnection.cpp",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\sockets\\public\\socketsubsystem.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\sockets\\public\\addressinfotypes.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\networking\\public\\interfaces\\ipv4\\ipv4address.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\networking\\public\\interfaces\\ipv4\\ipv4subnetmask.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\sockets\\public\\sockets.h",
+            "c:\\users\\studentsaxion\\documents\\unreal projects\\chatgpt_proto3\\plugins\\tcpsocketplugin\\source\\tcpsocketplugin\\private\\tcpsocketplugin.cpp",
+            "c:\\users\\studentsaxion\\documents\\unreal projects\\chatgpt_proto3\\plugins\\tcpsocketplugin\\source\\tcpsocketplugin\\public\\tcpsocketplugin.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\developer\\settings\\public\\isettingsmodule.h",
+            "c:\\users\\studentsaxion\\documents\\unreal projects\\chatgpt_proto3\\plugins\\tcpsocketplugin\\source\\tcpsocketplugin\\private\\tcpsocketsettings.cpp"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

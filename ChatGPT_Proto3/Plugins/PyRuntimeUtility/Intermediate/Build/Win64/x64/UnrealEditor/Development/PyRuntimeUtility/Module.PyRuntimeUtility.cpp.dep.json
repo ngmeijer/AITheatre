@@ -1,0 +1,20 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\studentsaxion\\documents\\unreal projects\\chatgpt_proto3\\plugins\\pyruntimeutility\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\pyruntimeutility\\module.pyruntimeutility.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\studentsaxion\\documents\\unreal projects\\chatgpt_proto3\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\engine\\sharedpch.engine.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\studentsaxion\\documents\\unreal projects\\chatgpt_proto3\\plugins\\pyruntimeutility\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\pyruntimeutility\\definitions.pyruntimeutility.h",
+            "c:\\users\\studentsaxion\\documents\\unreal projects\\chatgpt_proto3\\plugins\\pyruntimeutility\\intermediate\\build\\win64\\unrealeditor\\inc\\pyruntimeutility\\uht\\pyruntimeutility.init.gen.cpp",
+            "c:\\users\\studentsaxion\\documents\\unreal projects\\chatgpt_proto3\\plugins\\pyruntimeutility\\intermediate\\build\\win64\\unrealeditor\\inc\\pyruntimeutility\\uht\\pythonfunctionlibrary.gen.cpp",
+            "c:\\users\\studentsaxion\\documents\\unreal projects\\chatgpt_proto3\\plugins\\pyruntimeutility\\source\\pyruntimeutility\\public\\pythonfunctionlibrary.h",
+            "c:\\users\\studentsaxion\\documents\\unreal projects\\chatgpt_proto3\\plugins\\pyruntimeutility\\intermediate\\build\\win64\\unrealeditor\\inc\\pyruntimeutility\\uht\\pythonfunctionlibrary.generated.h",
+            "c:\\users\\studentsaxion\\documents\\unreal projects\\chatgpt_proto3\\plugins\\pyruntimeutility\\source\\pyruntimeutility\\private\\pyruntimeutility.cpp",
+            "c:\\users\\studentsaxion\\documents\\unreal projects\\chatgpt_proto3\\plugins\\pyruntimeutility\\source\\pyruntimeutility\\public\\pyruntimeutility.h",
+            "c:\\users\\studentsaxion\\documents\\unreal projects\\chatgpt_proto3\\plugins\\pyruntimeutility\\source\\pyruntimeutility\\private\\pythonfunctionlibrary.cpp"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

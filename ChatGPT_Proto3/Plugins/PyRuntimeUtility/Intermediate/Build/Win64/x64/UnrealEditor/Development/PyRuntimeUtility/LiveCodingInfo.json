@@ -1,0 +1,11 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.PyRuntimeUtility.cpp.obj": [
+			"PyRuntimeUtility.init.gen.cpp.obj",
+			"PythonFunctionLibrary.gen.cpp.obj",
+			"PyRuntimeUtility.cpp.obj",
+			"PythonFunctionLibrary.cpp.obj"
+		]
+	}
+}

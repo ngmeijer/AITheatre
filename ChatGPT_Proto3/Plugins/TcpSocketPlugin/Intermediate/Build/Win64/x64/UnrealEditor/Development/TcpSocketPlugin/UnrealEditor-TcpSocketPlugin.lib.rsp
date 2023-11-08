@@ -1,0 +1,12 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UnrealEditor-TcpSocketPlugin.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"C:\Users\StudentSaxion\Documents\Unreal Projects\ChatGPT_Proto3\Intermediate\Build\Win64\x64\UnrealEditor\Development\Engine\SharedPCH.Engine.Cpp20.h.obj"
+"C:\Users\StudentSaxion\Documents\Unreal Projects\ChatGPT_Proto3\Plugins\TcpSocketPlugin\Intermediate\Build\Win64\x64\UnrealEditor\Development\TcpSocketPlugin\Module.TcpSocketPlugin.cpp.obj"
+"C:\Users\StudentSaxion\Documents\Unreal Projects\ChatGPT_Proto3\Plugins\TcpSocketPlugin\Intermediate\Build\Win64\x64\UnrealEditor\Development\TcpSocketPlugin\Default.rc2.res"
+/OUT:"C:\Users\StudentSaxion\Documents\Unreal Projects\ChatGPT_Proto3\Plugins\TcpSocketPlugin\Intermediate\Build\Win64\x64\UnrealEditor\Development\TcpSocketPlugin\UnrealEditor-TcpSocketPlugin.lib"
