@@ -91,15 +91,17 @@ class TCP:
                 input_type = "chat"
                 if(self.in_data.__contains__("Prompt is to generate an image")):
                     input_type = "image"
+                if(self.in_data.__contains__("Voice input was given")):
+                    input_type = "voice"
 
                 match input_type:
                     case "chat":
-                        print("chat was requested")
                         response = ChatGPT.ask_question(self.in_data)
                     case "image":
-                        print("image was requested")
                         self.in_data.replace("Prompt is to generate an image", '')
                         response = ChatGPT.create_image(self.in_data)                
+                    case "voice":
+                        response = ChatGPT.transcribe_audio()
                     case _:
                         print("Invalid argument for switch case")
                 

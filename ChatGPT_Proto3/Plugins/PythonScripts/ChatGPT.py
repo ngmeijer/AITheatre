@@ -1,7 +1,6 @@
 import os
 import openai
 
-
 def set_authentication():
     #Handles getting the authentication file and retrieves the API key inside.
     api_key = "empty"
@@ -54,3 +53,14 @@ def create_image(prompt : str):
     )
 
     return image_response.data[0].url
+
+def transcribe_audio():
+    print("transcribing audio nowwwww")
+    audio_file = open("../../Saved/BouncedWavFiles/Test.wav", "rb")
+    transcript = openai.Audio.transcribe(
+        "whisper-1",
+        audio_file,
+        response_format="text"
+    )
+
+    return transcript.strip()
