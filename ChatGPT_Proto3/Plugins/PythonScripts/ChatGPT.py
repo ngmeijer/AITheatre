@@ -1,10 +1,23 @@
 import os
 import openai
 
-api_key="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"
-openai.api_key = api_key
+
+def set_authentication():
+    #Handles getting the authentication file and retrieves the API key inside.
+    api_key = "empty"
+    api_file = open(f"auth.txt", "r")
+    api_key = api_file.read()
+
+    if (api_key == "empty"):
+        print("API key file could not be found. Make sure a file 'auth.txt' with a key exists.")
+        return
+    openai.api_key = api_key
+    return
+
 last_question_asked = "empty"
 last_image_prompt = "empty"
+
+set_authentication()
 
 def get_messages(question: str):
     return [{"role": "system", "content": question.strip()}]
