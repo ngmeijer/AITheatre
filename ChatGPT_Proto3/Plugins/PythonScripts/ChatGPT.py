@@ -1,5 +1,8 @@
 import os
-import openai
+import io
+from openai import OpenAI
+from pydub import AudioSegment
+from pydub.playback import play
 
 def set_authentication():
     #Handles getting the authentication file and retrieves the API key inside.
@@ -10,8 +13,9 @@ def set_authentication():
     if (api_key == "empty"):
         print("API key file could not be found. Make sure a file 'auth.txt' with a key exists.")
         return
-    openai.api_key = api_key
-    return
+    return api_key
+
+client = OpenAI(api_key=set_authentication())
 
 last_question_asked = "empty"
 last_image_prompt = "empty"
@@ -28,14 +32,16 @@ def ask_question(question: str):
 
     last_question_asked = question
 
-    completion = openai.ChatCompletion.create(
+    completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
          {"role": "user", "content": f"{question}"}
       ]
     )
 
-    return completion.choices[0].message.content.strip()
+    text_to_speech(completion.choices[0].message.content.strip())
+    response ="Chat:"+completion.choices[0].message.content.strip()
+    return response
 
 def create_image(prompt : str):
     global last_image_prompt
@@ -44,7 +50,7 @@ def create_image(prompt : str):
     
     last_image_prompt = prompt
 
-    image_response = openai.Image.create(
+    image_response = client.images.generate(
         model="dall-e-3",
         prompt=f"{prompt}",
         size="1024x1024",
@@ -52,15 +58,27 @@ def create_image(prompt : str):
         n=1,
     )
 
-    return image_response.data[0].url
+    response="Image:"+image_response.data[0].url
+    return response
 
 def transcribe_audio():
-    print("transcribing audio nowwwww")
     audio_file = open("../../Saved/BouncedWavFiles/Test.wav", "rb")
-    transcript = openai.Audio.transcribe(
-        "whisper-1",
-        audio_file,
+    transcript = client.audio.transcriptions.create(
+        model="whisper-1",
+        file=audio_file,
         response_format="text"
     )
 
-    return transcript.strip()
+    response="transcript:"+transcript.strip()
+    return response
+
+def text_to_speech(prompt : str):
+    ttsResult = client.audio.speech.create(
+        model="tts-1",
+        voice="alloy",
+        input=prompt
+    )
+
+    ttsResult.stream_to_file("../../Content/TTS/output.mp3")   
+
+    return ttsResult
