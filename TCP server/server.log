@@ -1,0 +1,12 @@
+2023-11-17 16:36:34,603 - ERROR: Error: local variable 'raised_hands' referenced before assignment
+2023-11-17 16:36:34,603 - ERROR: Exception occurred
+Traceback (most recent call last):
+  File "D:\Downloads\GitHub\Repositories\AITheatre\TCP server\server.py", line 36, in run_server
+    print(f"Received: {data_received} Currently raised hands: {raised_hands}")
+UnboundLocalError: local variable 'raised_hands' referenced before assignment
+2023-11-17 16:38:41,330 - ERROR: Error: name 'self' is not defined
+2023-11-17 16:38:41,330 - ERROR: Exception occurred
+Traceback (most recent call last):
+  File "D:\Downloads\GitHub\Repositories\AITheatre\TCP server\server.py", line 37, in run_server
+    print(f"Received: {data_received} Currently raised hands: {self.raised_hands}")
+NameError: name 'self' is not defined
