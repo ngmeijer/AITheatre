@@ -7,11 +7,12 @@ using System.Net.Sockets;
 using System.Text;
 using TMPro;
 using Unity.Networking.Transport;
+using UnityEngine.UI;
 
 public class ClientSocket : MonoBehaviour
 {
     private TcpClient _client;
-    [SerializeField] private string _host = "192.168.178.31";
+    [SerializeField] private string _host = "";
     [SerializeField] private int _port = 8000;
 
     public NetworkStream Stream;
@@ -19,16 +20,32 @@ public class ClientSocket : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _hostIPAddressText;
     [SerializeField] private TextMeshProUGUI _portText;
 
+    [SerializeField] private TMP_InputField _hostIPAddressInputField;
+    [SerializeField] private TMP_InputField _portInputField;
+    [SerializeField] private Button _submitButton;
     private bool _handRaised;
 
     private void Start()
     {
+        _submitButton.onClick.AddListener(() =>
+        {
+            _host = _hostIPAddressInputField.text;
+            int.TryParse(_portInputField.text, out _port);
+            SetupClient();
+        });
+        _hostIPAddressInputField.onSubmit.AddListener((arg) => SetupClient(arg));
+        _portInputField.onSubmit.AddListener((arg) => SetupClient(arg));
         SetupClient();
     }
 
-    private void SetupClient()
+    private void SetupClient(string ipAddress = "empty", int port = -1)
     {
-        _hostIPAddressText.SetText($"Host: {_host}");
+        if (ipAddress != "empty")
+            _host = ipAddress;
+        if (port != -1)
+            _port = port;
+            
+        _hostIPAddressText.SetText($"Current host: {_host}");
         _portText.SetText($"Port: {_port.ToString()}");
         
         try
