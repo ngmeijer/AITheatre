@@ -1,8 +1,7 @@
 import os
 import io
 from openai import OpenAI
-from pydub import AudioSegment
-from pydub.playback import play
+import time
 
 def set_authentication():
     #Handles getting the authentication file and retrieves the API key inside.
@@ -62,12 +61,20 @@ def create_image(prompt : str):
     return response
 
 def transcribe_audio():
-    audio_file = open("../../Saved/BouncedWavFiles/Test.wav", "rb")
-    transcript = client.audio.transcriptions.create(
-        model="whisper-1",
-        file=audio_file,
-        response_format="text"
-    )
+    file_path = "../../Content/STT/VoiceInput.wav"
+    while not os.path.exists(file_path):
+        time.sleep(0.1)
+
+    if os.path.isfile(file_path):
+        audio_file = open(file_path, "rb")
+        print(audio_file)
+        transcript = client.audio.transcriptions.create(
+           model="whisper-1",
+           file=audio_file,
+           response_format="text"
+        )
+
+    audio_file.close()
 
     response="transcript:"+transcript.strip()
     return response
