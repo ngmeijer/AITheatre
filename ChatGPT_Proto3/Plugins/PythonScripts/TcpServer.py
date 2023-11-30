@@ -37,6 +37,7 @@ Developed by Fortbonnitar
 
 import socket
 import ChatGPT
+import time
 
 debug = False
 
@@ -88,24 +89,10 @@ class TCP:
                     continue        
 
                 #determine input type based on button clicked?
-                input_type = "chat"
-                if(self.in_data.__contains__("Prompt is to generate an image")):
-                    input_type = "image"
-                if(self.in_data.__contains__("Voice input was given")):
-                    input_type = "voice"
+                input_type = self.define_input_type()
 
-                match input_type:
-                    case "chat":
-                        response = ChatGPT.ask_question(self.in_data)
-                    case "image":
-                        self.in_data.replace("Prompt is to generate an image", '')
-                        response = ChatGPT.create_image(self.in_data)                
-                    case "voice":
-                        response = ChatGPT.transcribe_audio()
-                    case _:
-                        print("Invalid argument for switch case")
-                
-                self.send_data(f'{response}')
+                #call the correct OpenAI API based on the input type
+                self.determine_data_action(input_type)
             
             except Exception as e:
                 print(e)
@@ -113,10 +100,35 @@ class TCP:
     def send_data(self, data_string, encoding='utf-8'):
             # Converting the sending data from string to bytes 
             reply_data = bytes(data_string, encoding)
-            print(reply_data)
 
             # Sending back to Unreal Engine
             send = self.client_socket.send(reply_data)
+
+    def define_input_type(self):
+        if(self.in_data.__contains__("Prompt is to generate an image")):
+                return "image"
+        if(self.in_data.__contains__("Voice input was given")):
+                return "voice"
+        return "chat"
+    
+    def determine_data_action(self, input_type : str):
+         match input_type:
+                case "chat":
+                    ### Kick off the initial question request
+                    ChatGPT.ask_question(self.in_data)
+
+                    while(ChatGPT.currently_streaming):
+                        streaming_message = ChatGPT.get_streaming_message()
+                        self.send_data(f'{streaming_message}')
+                case "image":
+                    self.in_data.replace("Prompt is to generate an image", '')
+                    response = ChatGPT.create_image(self.in_data)    
+                    self.send_data(f'{response}')
+                case "voice":
+                    response = ChatGPT.transcribe_audio()
+                    self.send_data(f'{response}')
+                case _:
+                    print("Invalid argument for switch case")
             
 server = TCP()
 server.listen()
