@@ -86,8 +86,9 @@ class TCP:
                 self.in_data = data.decode()
 
                 if(self.debug != True):
-                    continue        
+                    continue
 
+                print(self.in_data)
                 #determine input type based on button clicked?
                 input_type = self.define_input_type()
 
@@ -109,9 +110,16 @@ class TCP:
                 return "image"
         if(self.in_data.__contains__("Voice input was given")):
                 return "voice"
+        if(self.in_data.__contains__("custom-instruction-personality")):
+                return "custom-instruction-personality"
+        if(self.in_data.__contains__("custom-instruction-technical")):
+                return "custom-instruction-technical"
+        if(self.in_data.__contains__("custom-instruction-image")):
+                return "custom-instruction-image"
         return "chat"
     
     def determine_data_action(self, input_type : str):
+         print(input_type)
          match input_type:
                 case "chat":
                     ### Kick off the initial question request
@@ -119,6 +127,7 @@ class TCP:
 
                     while(ChatGPT.currently_streaming):
                         streaming_message = ChatGPT.get_streaming_message()
+                        print(streaming_message);
                         self.send_data(f'{streaming_message}')
                 case "image":
                     self.in_data.replace("Prompt is to generate an image", '')
@@ -127,6 +136,13 @@ class TCP:
                 case "voice":
                     response = ChatGPT.transcribe_audio()
                     self.send_data(f'{response}')
+                case "custom-instruction-personality":
+                    print("Received instructions")
+                    ChatGPT.set_personality(self.in_data)
+                case "custom-instruction-technical":
+                    ChatGPT.set_technical_instructions(self.in_data)
+                case "custom-instruction-image":
+                    ChatGPT.set_image_instructions(self.in_data)
                 case _:
                     print("Invalid argument for switch case")
             
