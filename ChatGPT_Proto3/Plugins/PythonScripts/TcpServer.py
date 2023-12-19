@@ -137,7 +137,6 @@ class TCP:
                     response = ChatGPT.transcribe_audio()
                     self.send_data(f'{response}')
                 case "custom-instruction-personality":
-                    print("Received instructions")
                     ChatGPT.set_personality(self.in_data)
                 case "custom-instruction-technical":
                     ChatGPT.set_technical_instructions(self.in_data)

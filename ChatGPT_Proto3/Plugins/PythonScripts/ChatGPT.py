@@ -36,19 +36,22 @@ speaking_speed = 0.32
 set_authentication()
 
 def set_personality(personality_instructions : str):
-    global personality_CI;
+    global personality_CI
     
     personality_CI = personality_instructions.replace("custom-instruction-personality", "")
+    print("Personality: " + personality_CI)
 
 def set_technical_instructions(technical_instructions : str):
-    global tech_details_CI;
+    global tech_details_CI
 
     tech_details_CI = technical_instructions.replace("custom-instruction-technical", "")
+    print("Tech: " + tech_details_CI)
 
 def set_image_instructions(image_instruction : str):
-    global image_details_CI;
+    global image_details_CI
 
     image_details_CI = image_instruction.replace("custom-instruction-image", "")
+    print("Image: " + image_details_CI)
 
 def get_messages(question: str):
     return [{"role": "system", "content": question.strip()}]
