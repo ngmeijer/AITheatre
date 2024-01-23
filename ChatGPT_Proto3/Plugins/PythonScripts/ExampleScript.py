@@ -112,7 +112,7 @@ class TCP:
                 self.send_data(f'001:{self.out_data}')
             
             except Exception as e:
-                print(e)
+                print(f"Exception: {e}")
 
 
 

@@ -56,5 +56,9 @@
 			"Name": "BlueprintFileUtils",
 			"Enabled": true
 		}
+	],
+	"TargetPlatforms": [
+		"Windows",
+		"Mac"
 	]
 }

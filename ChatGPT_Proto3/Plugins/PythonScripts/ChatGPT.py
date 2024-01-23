@@ -31,7 +31,9 @@ complete_output = ""
 chunk_list = []
 
 #Lower value is faster speed
-speaking_speed = 0.32
+text_speed = 0.32
+
+enable_ai_voice = False
 
 set_authentication()
 
@@ -53,8 +55,21 @@ def set_image_instructions(image_instruction : str):
     image_details_CI = image_instruction.replace("custom-instruction-image", "")
     print("Image: " + image_details_CI)
 
-def get_messages(question: str):
-    return [{"role": "system", "content": question.strip()}]
+def set_text_speed(input : str):
+    global text_speed
+
+    filteredText = input.replace("text-speed: ", "")
+    text_speed = float(filteredText)
+
+def set_ai_voice_state(input : str):
+    global enable_ai_voice
+
+    filteredText = input.replace("AI-voice:", "")
+    print(f"AI voice enabled?:{filteredText}")
+    if(filteredText == "Checked"):
+        enable_ai_voice = True
+    elif (filteredText == "Unchecked"):
+        enable_ai_voice = False
 
 def ask_question(question: str):
     global last_question_asked
@@ -62,6 +77,7 @@ def ask_question(question: str):
     global tech_details_CI
     global currently_streaming
     global chat_completion_object
+    global enable_ai_voice
 
     if(last_question_asked == question):
         return
@@ -69,7 +85,7 @@ def ask_question(question: str):
 
     #Create chat completion request, output is streamed.
     chat_completion_object = client.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model="gpt-4",
         messages=[
             {'role':'system', "content":f"{personality_CI} + {tech_details_CI}"},
             {"role": "user", "content": f"{question}"}
@@ -78,7 +94,11 @@ def ask_question(question: str):
     )
 
     get_complete_output()
-    #text_to_speech(complete_output)
+    
+    print(f"State of AI voice:{enable_ai_voice}")
+    if(enable_ai_voice):
+        print("enabled AI voice.")
+        text_to_speech(complete_output)
     currently_streaming = True
 
 
@@ -105,22 +125,22 @@ def get_streaming_message():
     global current_streaming_index
     global chunk_list
     global currently_streaming
-    global speaking_speed
+    global text_speed
 
     output = chunk_list[current_streaming_index]
-    print(output)
-    if(current_streaming_index < len(chunk_list) - 1):
+    # print(f"output: {output}")
+    if(current_streaming_index < (len(chunk_list) - 1)):
         current_streaming_index += 1
     else:
         currently_streaming = False
 
-    time.sleep(speaking_speed)
+    time.sleep(text_speed)
 
     if currently_streaming == False:
         return "Chat: stream has ended"
     
     if current_streaming_index == len(chunk_list) - 1:
-        return "Chat:" + output + ".\n"
+        return "Chat:" + output + "\n"
     
     return "Chat:" + output
         

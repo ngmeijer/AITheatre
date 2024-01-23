@@ -37,7 +37,6 @@ Developed by Fortbonnitar
 
 import socket
 import ChatGPT
-import time
 
 debug = False
 
@@ -88,7 +87,6 @@ class TCP:
                 if(self.debug != True):
                     continue
 
-                print(self.in_data)
                 #determine input type based on button clicked?
                 input_type = self.define_input_type()
 
@@ -96,7 +94,7 @@ class TCP:
                 self.determine_data_action(input_type)
             
             except Exception as e:
-                print(e)
+                print(f"Exception: {e}")
 
     def send_data(self, data_string, encoding='utf-8'):
             # Converting the sending data from string to bytes 
@@ -106,6 +104,8 @@ class TCP:
             send = self.client_socket.send(reply_data)
 
     def define_input_type(self):
+        print(f"Data received: {self.in_data}")
+
         if(self.in_data.__contains__("Prompt is to generate an image")):
                 return "image"
         if(self.in_data.__contains__("Voice input was given")):
@@ -116,10 +116,15 @@ class TCP:
                 return "custom-instruction-technical"
         if(self.in_data.__contains__("custom-instruction-image")):
                 return "custom-instruction-image"
+        if(self.in_data.__contains__("text-speed")):
+                return "text-speed"
+        if(self.in_data.__contains__("AI-voice")):
+                print("Input is AI voice.")
+                return "AI-voice"
         return "chat"
     
     def determine_data_action(self, input_type : str):
-         print(input_type)
+         print(f"input type:{input_type}")
          match input_type:
                 case "chat":
                     ### Kick off the initial question request
@@ -127,7 +132,7 @@ class TCP:
 
                     while(ChatGPT.currently_streaming):
                         streaming_message = ChatGPT.get_streaming_message()
-                        print(streaming_message);
+                        print(f"Streamed message: {streaming_message}")
                         self.send_data(f'{streaming_message}')
                 case "image":
                     self.in_data.replace("Prompt is to generate an image", '')
@@ -142,6 +147,11 @@ class TCP:
                     ChatGPT.set_technical_instructions(self.in_data)
                 case "custom-instruction-image":
                     ChatGPT.set_image_instructions(self.in_data)
+                case "text-speed":
+                    ChatGPT.set_text_speed(self.in_data)
+                case "AI-voice":
+                    print("Calling SetAIVoiceState")
+                    ChatGPT.set_ai_voice_state(self.in_data)
                 case _:
                     print("Invalid argument for switch case")
             
