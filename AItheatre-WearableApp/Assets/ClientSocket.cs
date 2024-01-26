@@ -33,9 +33,9 @@ public class ClientSocket : MonoBehaviour
             int.TryParse(_portInputField.text, out _port);
             SetupClient();
         });
-        _hostIPAddressInputField.onSubmit.AddListener((arg) => SetupClient(arg));
-        _portInputField.onSubmit.AddListener((arg) => SetupClient(arg));
-        SetupClient();
+        // _hostIPAddressInputField.onSubmit.AddListener((arg) => SetupClient(arg));
+        // _portInputField.onSubmit.AddListener((arg) => SetupClient(arg));
+        // SetupClient();
     }
 
     private void SetupClient(string ipAddress = "empty", int port = -1)
