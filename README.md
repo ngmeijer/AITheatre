@@ -11,6 +11,8 @@ We crafted several technical prototypes, which allowed the client to determine w
 
 Our idea was to create a active courtroom case, which would be shown as an interactive theatre play. The case focused on "the opinion of AI about humanity and whether or not they are allowed to survive". Our assignment was to base our concept on the play "R.U.R." by Karel Čapek.
 
+For more information, please refer to the [wiki](https://github.com/ngmeijer/AITheatre/wiki).
+
 <pre>
 Timeframe: September 2023 / January 2024
 Team size: 6
